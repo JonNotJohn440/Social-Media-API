@@ -6,16 +6,18 @@ module.exports = {
     res.json(db);
   },
   async createUser(req, res) {
-    const db = await User.create(req.body, { new: true });
+    console.log(req.body)
+    const db = await User.create(req.body);
     res.json(db);
   },
   async getUser(req, res) {
-    const db = await User.findById(req.params.id, { new: true })
+    const db = await User.findById(req.params.id)
       .populate("thoughts")
       .populate("friends");
     res.json(db);
   },
   async updateUser(req, res) {
+    console.log(req.body)
     const db = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });

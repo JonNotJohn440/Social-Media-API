@@ -5,12 +5,12 @@ module.exports = {
         res.json(db);
       },
       async createThought(req, res) {
-        const db = await Thought.create(req.body, { new: true });
+        const db = await Thought.create(req.body);
         const dbUser = await User.findByIdAndUpdate(req.body.id,{$push:{thoughts: db._id}})
         res.json(db);
       },
       async getThought(req, res) {
-        const db = await Thought.findById(req.params.id, { new: true })
+        const db = await Thought.findById(req.params.id)
 
         res.json(db);
       },
